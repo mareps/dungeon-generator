@@ -1,17 +1,8 @@
 
 export function renderShape(config): void {
-    const scene = document.getElementById('scene');
+    const scene = document.getElementById('scene') as HTMLCanvasElement;
+    const ctx = scene.getContext('2d');
 
-    const shape = document.createElement('div');
-    shape.className = 'room'
-
-    shape.style.width = `${config.width}px`;
-    shape.style.height = `${config.height}px`;
-    shape.style.position = 'absolute';
-    shape.style.border = `1px solid ${config.color}`;
-
-    shape.style.top = `${config.y}px`;
-    shape.style.left = `${config.x}px`;
-
-    scene.appendChild(shape);
+    ctx.fillStyle = config.color;
+    ctx.fillRect(config.x, config.y, config.width, config.height);
 }

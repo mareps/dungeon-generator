@@ -17,6 +17,31 @@ export class Grid {
         this.addRoom();
         this.addRoom();
         this.addRoom();
+        this.addRoom();
+        this.addRoom();
+        this.addRoom();
+        this.addRoom();
+        this.addRoom();
+        this.addRoom();
+        this.addRoom();
+        this.addRoom();
+        this.addRoom();
+        this.addRoom();
+        this.addRoom();
+        this.addRoom();
+        this.addRoom();
+        this.addRoom();
+        this.addRoom();
+        this.addRoom();
+        this.addRoom(); 
+        this.addRoom();
+        this.addRoom();
+        this.addRoom();
+        this.addRoom(); 
+        this.addRoom();
+        this.addRoom();
+        this.addRoom();
+        this.addRoom();
     }
 
     public drawScene(): void {
@@ -35,17 +60,17 @@ export class Grid {
         ctx.fillRect(x, y, width, height);
 
 
-        
+
         ctx.beginPath();
         ctx.strokeStyle = "#94d7da";
 
-        for(var x1 = x; x1 <= width; x1 = x1 + cellSize) {
+        for (var x1 = x; x1 <= width; x1 = x1 + cellSize) {
             ctx.moveTo(x1, 0);
             ctx.lineTo(x1, height);
             ctx.stroke();
         }
 
-        for(var y1 = y; y1 <= height; y1 = y1 + cellSize) {
+        for (var y1 = y; y1 <= height; y1 = y1 + cellSize) {
             ctx.moveTo(0, y1);
             ctx.lineTo(width, y1);
             ctx.stroke();

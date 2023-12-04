@@ -8,6 +8,7 @@ export interface Size {
     width: number, height: number
 }
 export class Room {
+    public base: number = 32;
     public size: Size;
     public position: Position;
 
@@ -22,13 +23,13 @@ export class Room {
 
     public setSize(): void {
         // codigo para gerar tamanhos aleatorios dentro de uma base e range
-        const min = 64;
-        const max = 128;
+        const min = this.base * 4;
+        const max = this.base * 6;
 
         //todo: a base referente ao grid
         this.size = {
-            width: Math.floor(Math.random() * (max - min) + min),
-            height: Math.floor(Math.random() * (max - min) + min),
+            width: Math.floor((Math.random() * (max - min) + min) / this.base) * this.base,
+            height: Math.floor((Math.random() * (max - min) + min) / this.base) * this.base,
         }
     }
 
@@ -36,11 +37,11 @@ export class Room {
         // codigo para gerar posicao aleatoria dentro do grid
 
         const min = 0;
-        const max = 640;
+        const max = this.base * 20;
 
         this.position = {
-            x: Math.floor(Math.random() * (max - min) + min),
-            y: Math.floor(Math.random() * (max - min) + min),
+            x: Math.floor((Math.random() * (max - min) + min) / this.base) * this.base,
+            y: Math.floor((Math.random() * (max - min) + min) / this.base) * this.base,
         }
     }
 
