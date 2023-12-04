@@ -6,15 +6,21 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "copy": "cp src/index.html dist",
+
     "build": "webpack --config webpack.dev.config.js",
-    "start:dev": "webpack-dev-server --open --config webpack.dev.config.js"
+    "start:dev": "webpack-dev-server --open --config webpack.dev.config.js",
+    "lint": "tslint",
+    "prettier": "prettier src --fix"
   },
   "author": "Marina Barnabá Silva",
   "license": "ISC",
+  
   "devDependencies": {
+    "prettier": "3.1.0",
     "ts-loader": "^9.5.1",
     "typescript": "^5.3.2",
     "webpack-cli": "^5.1.4",
-    "webpack-dev-server": "^4.15.1"
+    "webpack-dev-server": "^4.15.1",
+    "tslint": "^6.1.3"
   }
 }
