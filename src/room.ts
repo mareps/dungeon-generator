@@ -30,7 +30,6 @@ export class Room {
             width: Math.floor(Math.random() * (max - min) + min),
             height: Math.floor(Math.random() * (max - min) + min),
         }
-        console.log(this.size)
     }
 
     public setPosition(): void {
@@ -43,7 +42,6 @@ export class Room {
             x: Math.floor(Math.random() * (max - min) + min),
             y: Math.floor(Math.random() * (max - min) + min),
         }
-        console.log(this.position);
     }
 
     public getSize(): Size {

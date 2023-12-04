@@ -16,7 +16,7 @@ export class Grid {
         this.addRoom();
         this.addRoom();
         this.addRoom();
-        this.addRoom();        this.addRoom();
+        this.addRoom(); this.addRoom();
         this.addRoom();
         this.addRoom();
         this.addRoom();
@@ -67,19 +67,26 @@ export class Grid {
             const y1 = room.position.y;
             const y2 = room.position.y + room.size.height;
 
-            const xIntersection = newRoom.position.x > x1 && newRoom.position.x < x2;
+            const xIntersection = newRoom.position.x >= x1 && newRoom.position.x <= x2;
+            const xOutBounderies = newRoom.position.x < x1 && newRoom.position.x + newRoom.size.width > x2;
+            const x2Intersection = newRoom.position.x + newRoom.size.width >= x1
+                && newRoom.position.x + newRoom.size.width <= x2;
 
-            const x2Intersection = newRoom.position.x + newRoom.size.width > x1
-                && newRoom.position.x + newRoom.size.width < x2;
+            const yIntersection = newRoom.position.y >= y1 && newRoom.position.y <= y2;
+            const y2Intersection = newRoom.position.y + newRoom.size.height >= y1
+                && newRoom.position.y + newRoom.size.height <= y2;
+            const yOutBounderies = newRoom.position.y < y1 && newRoom.position.y + newRoom.size.height > y2;
 
-            const yIntersection = newRoom.position.y > y1 && newRoom.position.y < y2;
-            const y2Intersection = newRoom.position.y + newRoom.size.height > y1
-                && newRoom.position.y + newRoom.size.height < y2;
-
-            return (xIntersection || x2Intersection) && (yIntersection || y2Intersection);
+            return (xIntersection || x2Intersection || xOutBounderies) && (yIntersection || y2Intersection || yOutBounderies);
         });
 
         return !!any;
+    }
+
+    public checkCollision(): boolean {
+
+
+        return false;
     }
 
 }
