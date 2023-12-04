@@ -2,52 +2,57 @@ import { Room } from "./room";
 import { renderShape } from "./tools/renderShape";
 
 export class Grid {
-    public base = 32;
 
+    public base = 32;
     public width = this.base * 20;
     public height = this.base * 20;
+
     public rooms: Room[] = [];
 
     constructor() {
+        this.drawGrid(0, 0, this.width, this.height, this.base);
 
 
+        this.addRoom();
+        this.addRoom();
+        this.addRoom();
+        this.addRoom();
+    }
 
-        this.addRoom();
-        this.addRoom();
-        this.addRoom();
-        this.addRoom();
-        this.addRoom(); this.addRoom();
-        this.addRoom();
-        this.addRoom();
-        this.addRoom();
-        this.addRoom();
-        this.addRoom();
-        this.addRoom();
-        this.addRoom();
-        this.addRoom();
-        this.addRoom();
-        this.addRoom();
-        this.addRoom();
-        this.addRoom();
-        this.addRoom();
-        this.addRoom();
-        this.addRoom();
-        this.addRoom();
-        this.addRoom();
-        this.addRoom();
-        this.addRoom();
-        this.addRoom();
-        this.addRoom();
-        this.addRoom();
-        this.addRoom();
-        this.addRoom();
-
-        this.addRoom();
-        this.addRoom();
-        this.addRoom();
-        this.addRoom();
+    public drawScene(): void {
 
     }
+
+    public drawGrid(x: number, y: number, width: number, height: number, cellSize: number): void {
+
+        const scene = document.getElementById('scene') as HTMLCanvasElement;
+        const ctx = scene.getContext('2d');
+
+        scene.width = width;
+        scene.height = height;
+
+        ctx.fillStyle = "#f1f1f1";
+        ctx.fillRect(x, y, width, height);
+
+
+        
+        ctx.beginPath();
+        ctx.strokeStyle = "#94d7da";
+
+        for(var x1 = x; x1 <= width; x1 = x1 + cellSize) {
+            ctx.moveTo(x1, 0);
+            ctx.lineTo(x1, height);
+            ctx.stroke();
+        }
+
+        for(var y1 = y; y1 <= height; y1 = y1 + cellSize) {
+            ctx.moveTo(0, y1);
+            ctx.lineTo(width, y1);
+            ctx.stroke();
+        }
+        ctx.closePath();
+    }
+
 
     public addRoom(): void {
         const newRoom = new Room();

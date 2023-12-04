@@ -1,6 +1,6 @@
 
 export function renderShape(config): void {
-    const viewport = document.getElementById('viewport');
+    const scene = document.getElementById('scene');
 
     const shape = document.createElement('div');
     shape.className = 'room'
@@ -13,5 +13,5 @@ export function renderShape(config): void {
     shape.style.top = `${config.y}px`;
     shape.style.left = `${config.x}px`;
 
-    viewport.appendChild(shape);
+    scene.appendChild(shape);
 }

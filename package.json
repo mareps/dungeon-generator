@@ -8,13 +8,13 @@
     "copy": "cp src/index.html dist",
 
     "build": "webpack --config webpack.dev.config.js",
-    "start:dev": "webpack-dev-server --open --config webpack.dev.config.js",
+    "start:dev": "webpack-dev-server --open --config webpack.dev.config.js && npm run copy",
     "lint": "tslint",
     "prettier": "prettier src --fix"
   },
   "author": "Marina Barnabá Silva",
   "license": "ISC",
-  
+
   "devDependencies": {
     "prettier": "3.1.0",
     "ts-loader": "^9.5.1",
