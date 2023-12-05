@@ -1,5 +1,5 @@
+import { Rect } from "./rect";
 import { Room } from "./room";
-import { renderShape } from "./tools/renderShape";
 
 export class Grid {
 
@@ -12,41 +12,11 @@ export class Grid {
     constructor() {
         this.drawGrid(0, 0, this.width, this.height, this.base);
 
-
-        this.addRoom();
-        this.addRoom();
-        this.addRoom();
-        this.addRoom();
-        this.addRoom();
-        this.addRoom();
-        this.addRoom();
-        this.addRoom();
-        this.addRoom();
-        this.addRoom();
-        this.addRoom();
-        this.addRoom();
-        this.addRoom();
-        this.addRoom();
-        this.addRoom();
-        this.addRoom();
-        this.addRoom();
-        this.addRoom();
-        this.addRoom();
-        this.addRoom();
-        this.addRoom(); 
-        this.addRoom();
-        this.addRoom();
-        this.addRoom();
-        this.addRoom(); 
-        this.addRoom();
-        this.addRoom();
-        this.addRoom();
-        this.addRoom();
+        for (var x = 0; x < 240; x++) {
+            this.addRoom();
+        }
     }
 
-    public drawScene(): void {
-
-    }
 
     public drawGrid(x: number, y: number, width: number, height: number, cellSize: number): void {
 
@@ -79,10 +49,13 @@ export class Grid {
     }
 
 
+    public createRect(): void {
+        const rect = new Rect(0,0,640,640);
+    }
+    
     public addRoom(): void {
         const newRoom = new Room();
         if (this.checkRoomsIntersection(newRoom)) {
-            newRoom.drawRoom('transparent')
         } else {
             this.rooms.push(newRoom);
             newRoom.drawRoom('#ccc')
@@ -90,32 +63,36 @@ export class Grid {
     }
 
     public checkRoomsIntersection(newRoom: Room): boolean {
-        const any = this.rooms.find(room => {
-            const x1 = room.position.x;
-            const x2 = room.position.x + room.size.width;
 
-            const y1 = room.position.y;
-            const y2 = room.position.y + room.size.height;
-
-            const xIntersection = newRoom.position.x >= x1 && newRoom.position.x <= x2;
-            const xOutBounderies = newRoom.position.x < x1 && newRoom.position.x + newRoom.size.width > x2;
-            const x2Intersection = newRoom.position.x + newRoom.size.width >= x1
-                && newRoom.position.x + newRoom.size.width <= x2;
-
-            const yIntersection = newRoom.position.y >= y1 && newRoom.position.y <= y2;
-            const y2Intersection = newRoom.position.y + newRoom.size.height >= y1
-                && newRoom.position.y + newRoom.size.height <= y2;
-            const yOutBounderies = newRoom.position.y < y1 && newRoom.position.y + newRoom.size.height > y2;
-
-            return (xIntersection || x2Intersection || xOutBounderies) && (yIntersection || y2Intersection || yOutBounderies);
+        return !!this.rooms.find(room => {
+            return this.checkCollision(room, newRoom);
         });
 
-        return !!any;
+
     }
 
-    public checkCollision(): boolean {
+    public checkCollision(room, newRoom: Room): boolean {
 
+        const x1 = room.position.x;
+        const x2 = room.position.x + room.size.width;
 
+        const y1 = room.position.y;
+        const y2 = room.position.y + room.size.height;
+
+        const xIntersection = newRoom.position.x >= x1 && newRoom.position.x <= x2;
+        const xOutBounderies = newRoom.position.x < x1 && newRoom.position.x + newRoom.size.width > x2;
+        const x2Intersection = newRoom.position.x + newRoom.size.width >= x1
+            && newRoom.position.x + newRoom.size.width <= x2;
+
+        const yIntersection = newRoom.position.y >= y1 && newRoom.position.y <= y2;
+        const y2Intersection = newRoom.position.y + newRoom.size.height >= y1
+            && newRoom.position.y + newRoom.size.height <= y2;
+        const yOutBounderies = newRoom.position.y < y1 && newRoom.position.y + newRoom.size.height > y2;
+
+        return (xIntersection || x2Intersection || xOutBounderies) && (yIntersection || y2Intersection || yOutBounderies);
+    }
+
+    public checkSceneCollision(newRoom): boolean {
         return false;
     }
 
